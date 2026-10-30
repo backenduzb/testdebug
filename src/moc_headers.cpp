@@ -5,6 +5,7 @@
 #include "vision/gemini-provider.h"
 #include "vision/local-agent-provider.h"
 #include "core/practice-controller.h"
+#include "core/trigger-server.h"
 #include "overlay/overlay-window.h"
 #include "ui/settings-dialog.h"
 #include "ui/main-window.h"

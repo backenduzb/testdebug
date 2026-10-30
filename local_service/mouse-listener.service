@@ -1,0 +1,13 @@
+[Unit]
+Description=Global right-click trigger for Gemini Vision Practice Assistant
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/Projects/TestAnswer
+ExecStart=/usr/bin/python3 %h/Projects/TestAnswer/local_service/mouse_listener.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

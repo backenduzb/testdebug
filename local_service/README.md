@@ -65,3 +65,27 @@ same Tailscale network.
 Only use `tailscale funnel` if you intentionally need a public internet URL; it
 requires an authentication layer and should not be used for an unauthenticated
 agent service.
+
+## Always-on global right-click trigger (Hyprland)
+
+The Qt app exposes a localhost-only trigger on port `8766`. The separate listener
+reads mouse button events and sends `POST /capture`; it does not inject or block
+input in the browser.
+
+```bash
+sudo pacman -S python-evdev
+sudo usermod -aG input "$USER"
+```
+
+Log out/in once after the group change, then install the user service:
+
+```bash
+mkdir -p ~/.config/systemd/user
+cp local_service/mouse-listener.service ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now mouse-listener.service
+systemctl --user status mouse-listener.service
+```
+
+Start the app once from the tray with `Arm Practice`. After that, every global
+right-click triggers `Loading...`, a new global screenshot, and a new answer.
