@@ -34,7 +34,7 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path dist | Out-Null
-          Copy-Item build/GeminiVisionPracticeAssistant.exe dist/
+          Copy-Item build/Release/GeminiVisionPracticeAssistant.exe dist/
           windeployqt --release --no-translations dist/GeminiVisionPracticeAssistant.exe
       - name: Upload artifact
         uses: actions/upload-artifact@v4
