@@ -8,7 +8,7 @@ AppId={{B6E1C6E4-10A6-4F2A-9B30-8C5E7F1A2D11}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={aut localappdata}\{#MyAppName}
+DefaultDirName={localappdata}\{#MyAppName}
 DisableProgramGroupPage=yes
 DisableDirPage=no
 CloseApplications=yes
@@ -31,8 +31,8 @@ Source: "..\dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs creat
 Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription: "Additional shortcuts:"; Flags: unchecked
 
 [Icons]
-Name: "{autprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{autdesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "Launch {#MyAppName}"; Flags: nowait postinstall skipifsilent
