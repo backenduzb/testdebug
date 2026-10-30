@@ -18,6 +18,7 @@ set(APP_SOURCES
     src/capture/iscreenshotprovider.h src/capture/mock-screenshot-provider.h src/capture/mock-screenshot-provider.cpp
     src/capture/windows-screenshot-provider.h src/capture/windows-screenshot-provider.cpp
     src/vision/igemini-provider.h src/vision/gemini-provider.h src/vision/gemini-provider.cpp
+    src/vision/local-agent-provider.h src/vision/local-agent-provider.cpp
     src/core/practice-controller.h src/core/practice-controller.cpp
     src/overlay/overlay-window.h src/overlay/overlay-window.cpp
     src/ui/settings-dialog.h src/ui/settings-dialog.cpp
@@ -30,7 +31,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE src)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network)
 qt_wrap_cpp(GEMINI_MOCS
     src/capture/iscreenshotprovider.h src/capture/mock-screenshot-provider.h src/capture/windows-screenshot-provider.h
-    src/vision/igemini-provider.h src/vision/gemini-provider.h
+    src/vision/igemini-provider.h src/vision/gemini-provider.h src/vision/local-agent-provider.h
     src/core/practice-controller.h src/overlay/overlay-window.h
     src/ui/settings-dialog.h src/ui/main-window.h)
 target_sources(${PROJECT_NAME} PRIVATE ${GEMINI_MOCS})

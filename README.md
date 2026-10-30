@@ -19,7 +19,7 @@ The GitHub workflow in `.github/workflows/windows.yml` performs the same Windows
 
 Start the app, open Settings, enter a Gemini API key and a currently available image-capable model, then restart practice. The key is stored via `QSettings` in the current user's application settings and is never committed to source. Do not put it in GitHub Actions variables unless you intentionally add a runtime integration.
 
-The API request uses HTTPS and certificate validation. The response is accepted only for the supported statuses and, for success, a visible answer label. Model confidence is displayed only as data from the model and is not a calibrated probability.
+The API request uses HTTPS and certificate validation. The default model is `gemini-3.8-flash` and can be changed in Settings or `.env`. The response is accepted only for the supported statuses and, for success, a visible answer label. Model confidence is displayed only as data from the model and is not a calibrated probability.
 
 ## Authorized integration and limitations
 

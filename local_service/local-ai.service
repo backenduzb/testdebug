@@ -1,0 +1,14 @@
+[Unit]
+Description=Local Codex/OpenCode vision gateway
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/Projects/TestAnswer
+ExecStart=/usr/bin/python3 %h/Projects/TestAnswer/local_service/server.py
+Restart=on-failure
+RestartSec=5
+Environment=LOCAL_AI_PORT=8765
+
+[Install]
+WantedBy=default.target

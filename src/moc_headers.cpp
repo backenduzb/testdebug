@@ -3,6 +3,7 @@
 #include "capture/windows-screenshot-provider.h"
 #include "vision/igemini-provider.h"
 #include "vision/gemini-provider.h"
+#include "vision/local-agent-provider.h"
 #include "core/practice-controller.h"
 #include "overlay/overlay-window.h"
 #include "ui/settings-dialog.h"

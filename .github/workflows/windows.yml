@@ -11,9 +11,15 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.8.2'
+          version: '6.8.3'
+          host: windows
+          target: desktop
           arch: win64_msvc2022_64
-          modules: 'qtnetwork qttools'
+          modules: 'qtnetwork'
+          archives: 'qtbase'
+          aqtversion: '==3.3.*'
+          py7zrversion: '==1.1.0'
+          extra: '--external 7z'
           cache: true
       - name: Configure
         run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
