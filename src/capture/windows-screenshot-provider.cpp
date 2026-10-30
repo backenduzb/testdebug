@@ -2,6 +2,7 @@
 #ifdef _WIN32
 #include <QScreen>
 #include <QGuiApplication>
+#include <QPixmap>
 #else
 #include <QProcess>
 #endif
