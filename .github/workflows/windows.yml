@@ -8,6 +8,10 @@ jobs:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
+      - name: Use supported Python for aqt
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
@@ -20,7 +24,8 @@ jobs:
           aqtversion: '==3.3.*'
           py7zrversion: '==1.1.0'
           extra: '--external 7z'
-          cache: true
+          setup-python: false
+          cache: false
       - name: Configure
         run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
       - name: Build
