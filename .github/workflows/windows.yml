@@ -1,8 +1,12 @@
 name: Windows build and test
 on:
   push:
+    tags:
+      - 'v*'
   pull_request:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: windows-2022
@@ -36,8 +40,9 @@ jobs:
           New-Item -ItemType Directory -Force -Path dist | Out-Null
           Copy-Item build/Release/GeminiVisionPracticeAssistant.exe dist/
           windeployqt --release --no-translations dist/GeminiVisionPracticeAssistant.exe
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Publish public EXE release asset
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
         with:
-          name: GeminiVisionPracticeAssistant-windows
-          path: dist
+          generate_release_notes: true
+          files: dist/GeminiVisionPracticeAssistant.exe
