@@ -21,6 +21,7 @@ signals:
 private slots:
     void emitTrigger();
 
+private:
 #ifdef Q_OS_WIN
     static LRESULT CALLBACK mouseProc(int code, WPARAM message, LPARAM data);
     static GlobalMouseTrigger *s_instance;
