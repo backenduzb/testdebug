@@ -1,0 +1,5 @@
+#include "appsettings.h"
+#include <QSettings>
+void AppSettings::load() { QSettings s; apiKey=s.value("gemini/apiKey").toString(); model=s.value("gemini/model",model).toString(); sampleIntervalMs=s.value("capture/intervalMs",sampleIntervalMs).toInt(); fontSize=s.value("overlay/fontSize",fontSize).toInt(); margin=s.value("overlay/margin",margin).toInt(); overlayEnabled=s.value("overlay/enabled",overlayEnabled).toBool(); periodicSampling=s.value("capture/periodic",periodicSampling).toBool(); }
+void AppSettings::save() const { QSettings s; s.setValue("gemini/apiKey",apiKey); s.setValue("gemini/model",model); s.setValue("capture/intervalMs",sampleIntervalMs); s.setValue("capture/periodic",periodicSampling); s.setValue("overlay/fontSize",fontSize); s.setValue("overlay/margin",margin); s.setValue("overlay/enabled",overlayEnabled); }
+bool AppSettings::valid(QString *error) const { if(apiKey.trimmed().isEmpty()){if(error)*error="Gemini API key sozlanmagan";return false;} if(model.trimmed().isEmpty()){if(error)*error="Model nomi bo'sh";return false;} if(sampleIntervalMs<250){if(error)*error="Sampling interval kamida 250 ms bo'lishi kerak";return false;} return true; }
