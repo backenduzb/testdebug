@@ -14,6 +14,7 @@ set(APP_SOURCES
     src/main.cpp
     src/core/models.h src/core/responsevalidator.h src/core/responsevalidator.cpp
     src/core/trigger-server.h src/core/trigger-server.cpp
+    src/core/global-mouse-trigger.h src/core/global-mouse-trigger.cpp
     src/core/fingerprint.h src/core/fingerprint.cpp
     src/config/appsettings.h src/config/appsettings.cpp
     src/capture/iscreenshotprovider.h src/capture/mock-screenshot-provider.h src/capture/mock-screenshot-provider.cpp
