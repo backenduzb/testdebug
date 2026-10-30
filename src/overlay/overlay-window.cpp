@@ -3,7 +3,7 @@
 #include <QScreen>
 #include <QGuiApplication>
 #include <QVBoxLayout>
-OverlayWindow::OverlayWindow(QWidget*p):QWidget(p,Qt::Tool|Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint){setAttribute(Qt::WA_TranslucentBackground);auto *box=new QVBoxLayout(this);box->setContentsMargins(10,6,10,6);m_label=new QLabel("Tayyor",this);m_label->setStyleSheet("color:white;background:black;");box->addWidget(m_label);setStyleSheet("background:black;");}
+OverlayWindow::OverlayWindow(QWidget*p):QWidget(p,Qt::Tool|Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::WindowDoesNotAcceptFocus|Qt::WindowTransparentForInput){setAttribute(Qt::WA_TranslucentBackground);setAttribute(Qt::WA_ShowWithoutActivating);auto *box=new QVBoxLayout(this);box->setContentsMargins(10,6,10,6);m_label=new QLabel("Tayyor",this);m_label->setStyleSheet("color:#000000;background:transparent;");box->addWidget(m_label);setStyleSheet("background:transparent;");}
 void OverlayWindow::setText(const QString&s){m_label->setText(s);adjustSize();reposition();}
 void OverlayWindow::setFontPixels(int n){auto f=m_label->font();f.setPixelSize(n);m_label->setFont(f);adjustSize();}
 void OverlayWindow::setMargin(int n){m_margin=n;reposition();}

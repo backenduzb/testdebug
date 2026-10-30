@@ -14,11 +14,13 @@ import subprocess
 import tempfile
 import threading
 import time
+import hmac
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 HOST = "127.0.0.1"
 PORT = int(os.environ.get("LOCAL_AI_PORT", "8765"))
+AUTH_TOKEN = os.environ.get("LOCAL_AI_TOKEN", "").strip()
 TIMEOUT = int(os.environ.get("LOCAL_AI_TIMEOUT", "120"))
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
 RETRIES = 2
@@ -123,12 +125,18 @@ class Handler(BaseHTTPRequestHandler):
         return
 
     def do_GET(self) -> None:
+        if not self._authorized():
+            self._send(401, {"error": "Unauthorized"})
+            return
         if self.path == "/health":
             self._send(200, {"ok": True, "agents": AGENTS})
         else:
             self._send(404, {"error": "not found"})
 
     def do_POST(self) -> None:
+        if not self._authorized():
+            self._send(401, {"status": "error", "error": "Unauthorized"})
+            return
         if self.path != "/v1/analyze":
             self._send(404, {"error": "not found"})
             return
@@ -148,6 +156,13 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
         self.wfile.write(data)
+
+    def _authorized(self) -> bool:
+        if not AUTH_TOKEN:
+            return True
+        value = self.headers.get("Authorization", "")
+        supplied = value[7:].strip() if value.lower().startswith("bearer ") else ""
+        return bool(supplied) and hmac.compare_digest(supplied, AUTH_TOKEN)
 
 
 if __name__ == "__main__":
